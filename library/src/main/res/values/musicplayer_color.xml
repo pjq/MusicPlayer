@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>  
+    <color name="red">#094977</color>
+    <color name="black">#333333</color>
+    <color name="black_a">#aaaaaa</color>
+    <color name="black_b">#666666</color>
+    <color name="green">#8bc226</color> 
+    <color name="orange">#FFFCDB</color>
+    <color name="listviewline">#D6D5C7</color>    
+    <color name="white">#FFFFFF</color>
+    
+    <color name="font_red">#7f00</color>
+    <color name="font_blue">#770000ff</color>
+    <color name="font_green">#7700ff00</color>
+	<color name="font_yellow">#77ffff00</color>
+    <color name="page_bookinfos_body_foot_bg">#f5f4f4</color>
+</resources>
