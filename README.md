@@ -9,7 +9,7 @@ gradle clean build uploadArchives
 ## Gradle 
 ```
 dependencies {
-    compile 'me.pjq.android:musicplayer:1.0.0'
+    compile 'me.pjq:musicplayer:1.0.0'
     }
 ```
 
