@@ -36,6 +36,8 @@ public class MusicPlayerConfig implements Parcelable {
      */
     int dataProtect;
 
+    int shakeToNext;
+
     public MusicPlayerConfig() {
         autoPlay = MusicPlayerConstants.BOOLEAN_TRUE;
         continuePlay = MusicPlayerConstants.BOOLEAN_TRUE;
@@ -44,6 +46,7 @@ public class MusicPlayerConfig implements Parcelable {
         autoStopTime = -1;
         autoStopChapterCount = -1;
         dataProtect = MusicPlayerConstants.BOOLEAN_TRUE;
+        shakeToNext = MusicPlayerConstants.BOOLEAN_TRUE;
     }
 
     @Override
@@ -55,6 +58,7 @@ public class MusicPlayerConfig implements Parcelable {
         stringBuilder.append("autoStopTime=" + getAutoStopTime() + '\n');
         stringBuilder.append("autoStopChapterCount=" + getAutoStopChapterCount() + '\n');
         stringBuilder.append("dataProtect=" + isDataProtect() + '\n');
+        stringBuilder.append("shakeToNext=" + isShakeToNext() + '\n');
         return stringBuilder.toString();
     }
 
@@ -79,6 +83,7 @@ public class MusicPlayerConfig implements Parcelable {
         out.writeInt(autoStopTime);
         out.writeInt(autoStopChapterCount);
         out.writeInt(dataProtect);
+        out.writeInt(shakeToNext);
     }
 
     public static final Creator<MusicPlayerConfig> CREATOR = new Creator<MusicPlayerConfig>() {
@@ -107,6 +112,7 @@ public class MusicPlayerConfig implements Parcelable {
         autoStopTime = in.readInt();
         autoStopChapterCount = in.readInt();
         dataProtect = in.readInt();
+        shakeToNext = in.readInt();
     }
 
     public void readFromParcel(Parcel in) {
@@ -151,6 +157,18 @@ public class MusicPlayerConfig implements Parcelable {
 
     public boolean isQuickStop() {
         return MusicPlayerConstants.BOOLEAN_TRUE == quickStop;
+    }
+
+    public void setShakeToNext(boolean shakeToNext) {
+        if (shakeToNext) {
+            this.shakeToNext = MusicPlayerConstants.BOOLEAN_TRUE;
+        } else {
+            this.shakeToNext = MusicPlayerConstants.BOOLEAN_FALSE;
+        }
+    }
+
+    public boolean isShakeToNext() {
+        return MusicPlayerConstants.BOOLEAN_TRUE == shakeToNext;
     }
 
     public int getAutoStopTime() {

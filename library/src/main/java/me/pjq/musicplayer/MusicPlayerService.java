@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Process;
 import android.os.RemoteException;
+import android.os.Vibrator;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -31,6 +32,7 @@ import java.util.Vector;
 import me.pjq.musicplayer.utils.NotificationUtil;
 import me.pjq.musicplayer.utils.PlayerUtils;
 import me.pjq.musicplayer.utils.StatUtil;
+import me.pjq.musicplayer.utils.ToastUtil;
 import me.pjq.musicplayer.utils.Utils;
 
 
@@ -57,7 +59,7 @@ import me.pjq.musicplayer.utils.Utils;
  * <p/>
  * 播放器有对各种异常处理，包括:
  * <li>来电中断{@link #mPhoneStateListener},
- * <li>屏幕翻转{@link #mSensorEventListener},
+ * <li>屏幕翻转{@link #sd},
  * <li>网络状态切换{@link #mNetWorkChangeReceiver},
  * <li>插拨耳机{@link #mAudioBecomingNoisyReceiver},
  * <li>其它播放器播放请求{@link #mAudioFocusHelper}
@@ -88,6 +90,9 @@ public class MusicPlayerService extends Service implements
     private MediaPlayer mCloudaryMediaPlayer;
 
     private Context mContext;
+
+    private Vibrator vibrator;
+    private ShakeEventManager sd;
 
     /**
      * 保存播放器prepare状态
@@ -438,58 +443,6 @@ public class MusicPlayerService extends Service implements
         }
     };
 
-    private SensorEventListener mSensorEventListener = new SensorEventListener() {
-        public void onSensorChanged(SensorEvent e) {
-            float x = e.values[0];
-            float y = e.values[1];
-            float z = e.values[2];
-
-            // log("onSensorChanged,x=" + x + ",y=" + y + ",z=" + z);
-
-            boolean isStop = false;
-            int zMinValue = -8;
-
-            if (x < 1 && x > -1 && y < 1 && y > -1) {
-                if (z <= zMinValue) {
-                    isStop = true;
-                }
-            } else {
-                if (z <= zMinValue) {
-                    isStop = true;
-                }
-            }
-
-            boolean isQuickStopEnable = getPlayerConfig().isQuickStop();
-            if (isStop && isQuickStopEnable) {
-                log("back the phone,pausePlayer(),x=" + x + ",y=" + y + ",z=" + z);
-                pausePlayer();
-            }
-
-        }
-
-        public void onAccuracyChanged(Sensor s, int accuracy) {
-
-        }
-    };
-
-    /**
-     * 屏幕朝下监听
-     */
-    private void registerSensorListener() {
-        SensorManager sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
-        Sensor sensor = sensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensorMgr.registerListener(mSensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-    }
-
-    private void unRegisterSensorListener() {
-        SensorManager sensorMgr = (SensorManager) getSystemService(SENSOR_SERVICE);
-
-        if (null != mSensorEventListener) {
-            sensorMgr.unregisterListener(mSensorEventListener);
-            mSensorEventListener = null;
-        }
-    }
-
     private void log(String message) {
         if (!DEBUG_LOG) {
             return;
@@ -544,12 +497,33 @@ public class MusicPlayerService extends Service implements
         registerReceiver(mNetWorkChangeReceiver, new IntentFilter(
                 ConnectivityManager.CONNECTIVITY_ACTION));
 
-        registerSensorListener();
-
         TelephonyManager tm = (TelephonyManager) getSystemService(Service.TELEPHONY_SERVICE);
         tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
 
         mUpdatePlayingProgressThread.start();
+
+        vibrator = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
+        sd = new ShakeEventManager();
+        sd.setListener(new ShakeEventManager.ShakeListener() {
+            @Override
+            public void onShake() {
+                boolean isShakeToNext = getPlayerConfig().isShakeToNext();
+                if (isShakeToNext) {
+                    playNext();
+                }
+            }
+
+            @Override
+            public void onFlipBack() {
+                boolean isQuickStopEnable = getPlayerConfig().isQuickStop();
+                if (isQuickStopEnable) {
+                    log("back the phone,pausePlayer()");
+                    pausePlayer();
+                }
+            }
+        });
+
+        sd.init(this);
     }
 
     /**
@@ -1031,7 +1005,7 @@ public class MusicPlayerService extends Service implements
             mNetWorkChangeReceiver = null;
         }
 
-        unRegisterSensorListener();
+        sd.deregister();
         removeAudioFocus();
 
         TelephonyManager tm = (TelephonyManager) getSystemService(Service.TELEPHONY_SERVICE);

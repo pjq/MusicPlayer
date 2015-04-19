@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Musicplayer</string>
+    <string name="next_music">下一首</string>
 </resources>
