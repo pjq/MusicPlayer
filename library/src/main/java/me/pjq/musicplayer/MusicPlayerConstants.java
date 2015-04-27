@@ -1,4 +1,3 @@
-
 package me.pjq.musicplayer;
 
 public interface MusicPlayerConstants {
@@ -7,6 +6,8 @@ public interface MusicPlayerConstants {
 
     // 1s
     public static final int PROGRESS_REFRESH_INTERVAL = 1000;
+
+    public static final int STEP_FREQUENCY_REFRESH_INTERVAL = 10000;
 
     public static final int PROGRESS_REFRESH_INTERVAL_SECOND = 1;
 
@@ -29,6 +30,10 @@ public interface MusicPlayerConstants {
     public static final String KEY_ITEM = "player_item";
 
     public static final String KEY_TYPE = "type";
+
+    public static final String KEY_COUNT = "count";
+
+    public static final String KEY_FREQ = "freq";
 
     public static final String KEY_INDEX = "index";
 
@@ -113,7 +118,11 @@ public interface MusicPlayerConstants {
 
     public static final int MESSAGE_UPDATE_PLAYING_PROGRESS = COMMAND_UPDATE_START_PLAYER_SOURCE + 1;
 
-    public static final int MESSAGE_NOT_WIFI = MESSAGE_UPDATE_PLAYING_PROGRESS + 1;
+    public static final int MESSAGE_UPDATE_STEP_FREQUENCY = MESSAGE_UPDATE_PLAYING_PROGRESS + 1;
+
+    public static final int MESSAGE_UPDATE_STEP_COUNT = MESSAGE_UPDATE_STEP_FREQUENCY + 1;
+
+    public static final int MESSAGE_NOT_WIFI = MESSAGE_UPDATE_STEP_COUNT + 1;
 
     public static final int MESSAGE_NO_NETWORK_AVAILABLE = MESSAGE_NOT_WIFI + 1;
 
@@ -207,35 +216,6 @@ public interface MusicPlayerConstants {
     public static final int MESSAGE_ON_SAVE_PLAYING_PROGRESS = MESSAGE_ON_PLAYERLIST_CHANGE + 1;
 
     public static final int MESSAGE_SET_LISTENER = MESSAGE_ON_SAVE_PLAYING_PROGRESS + 1;
-
-    // 以下与source相关的应该定义为常量，不能够在中间插入其它值，这个以后需要一一对应起来
-//    public static final int TINGSHU_SOURCE_CHAPTER_LIST = 1000;
-//
-//    public static final int TINGSHU_SOURCE_BOOK_INFO = TINGSHU_SOURCE_CHAPTER_LIST + 1;
-//
-//    public static final int TINGSHU_SOURCE_PLAYER_MAIN_VIEW = TINGSHU_SOURCE_BOOK_INFO + 1;
-//
-//    public static final int TINGSHU_SOURCE_COMMENTS_LIST = TINGSHU_SOURCE_PLAYER_MAIN_VIEW + 1;
-//
-//    public static final int TINGSHU_SOURCE_TINGSHU_SETTING = TINGSHU_SOURCE_COMMENTS_LIST + 1;
-//
-//    public static final int TINGSHU_SOURCE_VIEW_PAGE_ACTIVITY = TINGSHU_SOURCE_TINGSHU_SETTING + 1;
-//
-//    public static final int TINGSHU_SOURCE_CHAPTER_LIST_VIEW_HOLDER = TINGSHU_SOURCE_VIEW_PAGE_ACTIVITY + 1;
-//
-//    public static final int TINGSHU_START_SOURCE_FROM_SHELF_LIST = TINGSHU_SOURCE_CHAPTER_LIST_VIEW_HOLDER + 1;
-//
-//    public static final int TINGSHU_START_SOURCE_FROM_BOOK_DETAIL_READ_NOW_BUTTON = TINGSHU_START_SOURCE_FROM_SHELF_LIST + 1;
-//
-//    public static final int TINGSHU_START_SOURCE_FROM_BOOK_DETAIL_DIRECTORY_ENTRY = TINGSHU_START_SOURCE_FROM_BOOK_DETAIL_READ_NOW_BUTTON + 1;
-//
-//    public static final int TINGSHU_START_SOURCE_FROM_ORDER_FINISHED = TINGSHU_START_SOURCE_FROM_BOOK_DETAIL_DIRECTORY_ENTRY + 1;
-//
-//    public static final int TINGSHU_START_SOURCE_FROM_APP_WIDGET = TINGSHU_START_SOURCE_FROM_ORDER_FINISHED + 1;
-//
-//    public static final int TINGSHU_START_SOURCE_FROM_NOTIFICATION = TINGSHU_START_SOURCE_FROM_APP_WIDGET + 1;
-//
-//    public static final int TINGSHU_START_SOURCE_FROM_SHELF_CONTINUE_TINGSHU = TINGSHU_START_SOURCE_FROM_NOTIFICATION + 1;
 
 
     /**

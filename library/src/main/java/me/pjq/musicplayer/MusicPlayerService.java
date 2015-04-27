@@ -1,4 +1,3 @@
-
 package me.pjq.musicplayer;
 
 import android.app.Service;
@@ -6,10 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
@@ -32,7 +27,6 @@ import java.util.Vector;
 import me.pjq.musicplayer.utils.NotificationUtil;
 import me.pjq.musicplayer.utils.PlayerUtils;
 import me.pjq.musicplayer.utils.StatUtil;
-import me.pjq.musicplayer.utils.ToastUtil;
 import me.pjq.musicplayer.utils.Utils;
 
 
@@ -59,7 +53,7 @@ import me.pjq.musicplayer.utils.Utils;
  * <p/>
  * 播放器有对各种异常处理，包括:
  * <li>来电中断{@link #mPhoneStateListener},
- * <li>屏幕翻转{@link #sd},
+ * <li>屏幕翻转{@link #shakeEventManager},
  * <li>网络状态切换{@link #mNetWorkChangeReceiver},
  * <li>插拨耳机{@link #mAudioBecomingNoisyReceiver},
  * <li>其它播放器播放请求{@link #mAudioFocusHelper}
@@ -92,7 +86,11 @@ public class MusicPlayerService extends Service implements
     private Context mContext;
 
     private Vibrator vibrator;
-    private ShakeEventManager sd;
+    private ShakeEventManager shakeEventManager;
+    private StepCountEventManager stepCountEventManager;
+    private int stepInitCount = -1;
+    private int stepCount = -1;
+    private int stepPrevCount = -1;
 
     /**
      * 保存播放器prepare状态
@@ -219,6 +217,13 @@ public class MusicPlayerService extends Service implements
                     }
                 }
 
+            } else if (MusicPlayerConstants.MESSAGE_UPDATE_STEP_FREQUENCY == what) {
+                float freq = stepCount - stepPrevCount;
+                freq = freq / ((float) MusicPlayerConstants.STEP_FREQUENCY_REFRESH_INTERVAL / (float) 60000);
+
+                mPlayerListener.onUpdateStepFreq(freq);
+
+                stepPrevCount = stepCount;
             }
         }
 
@@ -256,7 +261,7 @@ public class MusicPlayerService extends Service implements
         }
     };
 
-    private boolean mThreadFlag = true;
+    private boolean mPlayingProgressUpdateThreadFlag = true;
 
     /**
      * 用来刷新播放进度，只要Service启动就一直处于状态
@@ -265,7 +270,7 @@ public class MusicPlayerService extends Service implements
 
         @Override
         public void run() {
-            while (mThreadFlag) {
+            while (mPlayingProgressUpdateThreadFlag) {
                 // 先要用isPlayerPreparingImpl判断是否准备完毕，否则会报exception
                 if (null != mCloudaryMediaPlayer && isPlayerPreparedImpl() && isPlaying()) {
                     mUpdatePlayingProgressHandler
@@ -278,7 +283,27 @@ public class MusicPlayerService extends Service implements
                     e.printStackTrace();
                 }
             }
+        }
+    });
 
+    private boolean mStepFrequencyUpdateThreadFlag = true;
+
+    /**
+     * 用来刷新播放进度，只要Service启动就一直处于状态
+     */
+    private Thread mStepFrequencyUpdateThread = new Thread(new Runnable() {
+
+        @Override
+        public void run() {
+            while (mStepFrequencyUpdateThreadFlag) {
+                mUpdatePlayingProgressHandler
+                        .sendEmptyMessage(MusicPlayerConstants.MESSAGE_UPDATE_STEP_FREQUENCY);
+                try {
+                    Thread.sleep(MusicPlayerConstants.STEP_FREQUENCY_REFRESH_INTERVAL);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     });
 
@@ -503,8 +528,8 @@ public class MusicPlayerService extends Service implements
         mUpdatePlayingProgressThread.start();
 
         vibrator = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
-        sd = new ShakeEventManager();
-        sd.setListener(new ShakeEventManager.ShakeListener() {
+        shakeEventManager = new ShakeEventManager();
+        shakeEventManager.setListener(new ShakeEventManager.ShakeListener() {
             @Override
             public void onShake() {
                 boolean isShakeToNext = getPlayerConfig().isShakeToNext();
@@ -523,7 +548,35 @@ public class MusicPlayerService extends Service implements
             }
         });
 
-        sd.init(this);
+        shakeEventManager.init(this);
+
+        stepCountEventManager = new StepCountEventManager();
+        stepCountEventManager.setListener(new StepCountEventManager.StepCountListener() {
+            @Override
+            public void onStepCount(int count) {
+                stepCount = count;
+                if (-1 == stepPrevCount) {
+                    stepPrevCount = count;
+                }
+
+                if (-1 == stepInitCount) {
+                    stepInitCount = count;
+                }
+
+                int totalCount = count - stepInitCount;
+                if (totalCount > 0) {
+                    mPlayerListener.onUpdateStepCount(totalCount);
+                }
+            }
+
+            @Override
+            public void onNotSupportStepSensor() {
+
+            }
+        });
+
+        stepCountEventManager.init(this);
+        mStepFrequencyUpdateThread.start();
     }
 
     /**
@@ -992,7 +1045,8 @@ public class MusicPlayerService extends Service implements
         mPlayerListener = null;
         musicAlbumObject = null;
 
-        mThreadFlag = false;
+        mPlayingProgressUpdateThreadFlag = false;
+        mStepFrequencyUpdateThreadFlag = false;
         // mUpdatePlayingProgressThread.interrupt();
 
         if (null != mAudioBecomingNoisyReceiver) {
@@ -1005,7 +1059,8 @@ public class MusicPlayerService extends Service implements
             mNetWorkChangeReceiver = null;
         }
 
-        sd.deregister();
+        shakeEventManager.deregister();
+        stepCountEventManager.deregister();
         removeAudioFocus();
 
         TelephonyManager tm = (TelephonyManager) getSystemService(Service.TELEPHONY_SERVICE);

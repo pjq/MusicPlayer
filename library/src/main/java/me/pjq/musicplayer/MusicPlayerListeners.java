@@ -369,9 +369,34 @@ public class MusicPlayerListeners {
                 listener.onUpdatePlayingProgress(item, itemIndex, position);
             } catch (RemoteException e) {
                 e.printStackTrace();
-                // mIPlayerListeners.remove(listener);
-                // listener = null;
-                // size = mIPlayerListeners.size();
+                size = remoteExceptionHandle(listener);
+            }
+        }
+    }
+
+    public void onUpdateStepCount(int stepCount) {
+        int size = mIPlayerListeners.size();
+
+        for (int i = 0; i < size; i++) {
+            IMusicPlayerListener listener = mIPlayerListeners.get(i);
+            try {
+                listener.onUpdateStepCount(stepCount);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+                size = remoteExceptionHandle(listener);
+            }
+        }
+    }
+
+    public void onUpdateStepFreq(float freq) {
+        int size = mIPlayerListeners.size();
+
+        for (int i = 0; i < size; i++) {
+            IMusicPlayerListener listener = mIPlayerListeners.get(i);
+            try {
+                listener.onUpdateStepFrequency(freq);
+            } catch (RemoteException e) {
+                e.printStackTrace();
                 size = remoteExceptionHandle(listener);
             }
         }

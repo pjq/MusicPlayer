@@ -11,4 +11,8 @@ public interface MusicPlayerUIBridgeInterface {
     MusicPlayerConfig getPlayerConfig();
 
     void onShowMessage(MusicPlayerItem item, int type, String message);
+
+    void onUpdateStepCount(int stepCount);
+
+    void onUpdateStepReq(float freq);
 }

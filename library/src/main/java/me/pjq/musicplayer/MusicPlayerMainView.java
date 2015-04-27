@@ -1,4 +1,3 @@
-
 package me.pjq.musicplayer;
 
 import android.content.ComponentName;
@@ -359,6 +358,27 @@ public class MusicPlayerMainView extends LinearLayout implements OnClickListener
         }
 
         @Override
+        public void onUpdateStepCount(int stepCount) throws RemoteException {
+            Message msg = mLocalHandler.obtainMessage(MESSAGE_UPDATE_STEP_COUNT);
+            Bundle data = new Bundle();
+            data.putInt(KEY_COUNT, stepCount);
+            msg.setData(data);
+
+            mLocalHandler.sendMessage(msg);
+
+        }
+
+        @Override
+        public void onUpdateStepFrequency(float freq) throws RemoteException {
+            Message msg = mLocalHandler.obtainMessage(MESSAGE_UPDATE_STEP_FREQUENCY);
+            Bundle data = new Bundle();
+            data.putFloat(KEY_FREQ, freq);
+            msg.setData(data);
+
+            mLocalHandler.sendMessage(msg);
+        }
+
+        @Override
         public void onShowMessage(MusicPlayerItem item, int type, String message) {
             Message msg = mLocalHandler.obtainMessage(MESSAGE_ON_SHOW_MESSAGE);
             Bundle data = new Bundle();
@@ -596,6 +616,28 @@ public class MusicPlayerMainView extends LinearLayout implements OnClickListener
                     int position = data.getInt(KEY_POSOTION);
 
                     updatePlayingProgress(position);
+
+                    break;
+                }
+
+                case MESSAGE_UPDATE_STEP_FREQUENCY: {
+                    Bundle data = msg.getData();
+                    float freq = data.getFloat(KEY_FREQ);
+
+                    if (null != mPlayerUIInterface) {
+                        mPlayerUIInterface.onUpdateStepReq(freq);
+                    }
+
+                    break;
+                }
+
+                case MESSAGE_UPDATE_STEP_COUNT: {
+                    Bundle data = msg.getData();
+                    int stepCount = data.getInt(KEY_COUNT);
+
+                    if (null != mPlayerUIInterface) {
+                        mPlayerUIInterface.onUpdateStepCount(stepCount);
+                    }
 
                     break;
                 }
