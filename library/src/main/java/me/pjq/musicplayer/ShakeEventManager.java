@@ -28,7 +28,7 @@ public class ShakeEventManager implements SensorEventListener {
     private SensorManager sManager;
     private Sensor s;
 
-    private static final int MOV_COUNTS = 4;
+    private static final int MOV_COUNTS_TRIGGER = 4;
     private static final int MOV_THRESHOLD = 17;
     private static final float ALPHA = 0.8F;
     private static final int SHAKE_WINDOW_TIME_INTERVAL = 400; // milliseconds
@@ -61,8 +61,8 @@ public class ShakeEventManager implements SensorEventListener {
     public void onSensorChanged(SensorEvent sensorEvent) {
         shakeHandler(sensorEvent);
         rotateHandler(sensorEvent);
-        flipBackHandler(sensorEvent);
-        onLeftHandShake(sensorEvent);
+//        flipBackHandler(sensorEvent);
+//        onLeftHandShake(sensorEvent);
     }
 
     RotateSession session = new RotateSession();
@@ -72,7 +72,7 @@ public class ShakeEventManager implements SensorEventListener {
         float y = e.values[1];
         float z = e.values[2];
 
-        //EFLogger.i(TAG, "onSensorChanged,x=" + x + ",y=" + y + ",z=" + z);
+        Log.i("Sensor", "onSensorChanged,x=" + x + ",y=" + y + ",z=" + z);
 
         session = session.value(z);
 
@@ -103,7 +103,7 @@ public class ShakeEventManager implements SensorEventListener {
                 }
                 Log.d("SwA", "Mov counter [" + counter + "]");
 
-                if (counter >= MOV_COUNTS)
+                if (counter >= MOV_COUNTS_TRIGGER)
                     if (listener != null)
                         listener.onShake();
             }
@@ -210,12 +210,12 @@ public class ShakeEventManager implements SensorEventListener {
         private boolean value_8_7 = false;
 
         public RotateSession value(float val) {
-            if (4 <= val && val <= 8) {
+            if (2 <= val && val <= 7) {
                 value7_8 = true;
             }
 
             if (value7_8) {
-                if (2 <= val && val <= 4) {
+                if (1 <= val && val <= 3) {
                     value4_5 = true;
                 }
             }
@@ -230,12 +230,12 @@ public class ShakeEventManager implements SensorEventListener {
                 }
             }
 
-            if (-4 <= val && val <= -2) {
+            if (-3 <= val && val <= -2) {
                 value_5_4 = true;
             }
 
             if (value_1_0) {
-                if (-8 <= val && val <= -4) {
+                if (-7 <= val && val <= -2) {
                     value_8_7 = true;
                 }
             }
