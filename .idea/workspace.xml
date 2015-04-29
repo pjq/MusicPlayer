@@ -10,17 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2897992c-39d1-4f54-89ee-4fdd9620ede2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/aidl/me/pjq/musicplayer/IMusicPlayerListener.aidl" afterPath="$PROJECT_DIR$/library/src/main/aidl/me/pjq/musicplayer/IMusicPlayerListener.aidl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerConstants.java" afterPath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerListeners.java" afterPath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerListeners.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerMainView.java" afterPath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerMainView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerService.java" afterPath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerUIBridgeInterface.java" afterPath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerUIBridgeInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_19_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_19_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/library.iml" afterPath="$PROJECT_DIR$/library/library.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_19_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_19_0_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/ShakeEventManager.java" afterPath="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/ShakeEventManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gradle.iws" />
@@ -44,11 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MusicPlayerMainView.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MusicPlayerMainView.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerMainView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5034551" vertical-offset="8265" max-vertical-offset="17370">
-              <caret line="622" column="21" selection-start-line="622" selection-start-column="21" selection-end-line="622" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="8265" max-vertical-offset="17370">
+              <caret line="621" column="0" selection-start-line="621" selection-start-column="0" selection-end-line="621" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -57,7 +47,7 @@
       <file leaf-file-name="MusicPlayerUIBridgeInterface.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerUIBridgeInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="360">
               <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
               <folding />
             </state>
@@ -67,15 +57,9 @@
       <file leaf-file-name="MusicPlayerService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3105" max-vertical-offset="40140">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3345" max-vertical-offset="40860">
               <caret line="223" column="40" selection-start-line="223" selection-start-column="40" selection-end-line="223" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#9035#9726#0" expanded="true" />
-                <element signature="e#9719#9720#0" expanded="true" />
-                <element signature="e#9900#10407#0" expanded="true" />
-                <element signature="e#10400#10401#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,7 +67,7 @@
       <file leaf-file-name="MusicPlayerListeners.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerListeners.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5153" max-vertical-offset="7560">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5940" max-vertical-offset="7695">
               <caret line="396" column="45" selection-start-line="396" selection-start-column="45" selection-end-line="396" selection-end-column="45" />
               <folding />
             </state>
@@ -103,14 +87,9 @@
       <file leaf-file-name="IMusicPlayerListener.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/library/build/generated/source/aidl/release/me/pjq/musicplayer/IMusicPlayerListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-28.72" vertical-offset="12647" max-vertical-offset="13680">
+            <state vertical-scroll-proportion="0.0" vertical-offset="13545" max-vertical-offset="13860">
               <caret line="903" column="12" selection-start-line="903" selection-start-column="12" selection-end-line="903" selection-end-column="12" />
-              <folding>
-                <element signature="e#8060#8061#0" expanded="true" />
-                <element signature="e#8080#8081#0" expanded="true" />
-                <element signature="e#8129#8130#0" expanded="true" />
-                <element signature="e#8147#8148#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,15 +104,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShakeEventManager.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ShakeEventManager.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/ShakeEventManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.4" vertical-offset="165" max-vertical-offset="2355">
-              <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#4554#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.33267522" vertical-offset="1493" max-vertical-offset="3720">
+              <caret line="146" column="17" selection-start-line="146" selection-start-column="17" selection-end-line="146" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -141,11 +117,9 @@
       <file leaf-file-name="StepCountEventManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/StepCountEventManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1065">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+              <caret line="62" column="33" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -862,7 +836,6 @@
       <list>
         <option value="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerConfig.java" />
         <option value="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/ShakeEventManage.java" />
-        <option value="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/ShakeEventManager.java" />
         <option value="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/StepCountEventManager.java" />
         <option value="$PROJECT_DIR$/library/src/main/aidl/me/pjq/musicplayer/IMusicPlayerListener.aidl" />
         <option value="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerListeners.java" />
@@ -870,6 +843,7 @@
         <option value="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerConstants.java" />
         <option value="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerService.java" />
         <option value="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerMainView.java" />
+        <option value="$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/ShakeEventManager.java" />
       </list>
     </option>
   </component>
@@ -905,9 +879,6 @@
     </navigator>
     <panes>
       <pane id="AndroidView">
-        <subPane />
-      </pane>
-      <pane id="PackagesPane">
         <subPane />
       </pane>
       <pane id="ProjectPane">
@@ -1061,6 +1032,9 @@
             </PATH_ELEMENT>
           </PATH>
         </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane />
       </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
@@ -1233,7 +1207,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="2560" height="1354" extended-state="7" />
+    <frame x="0" y="22" width="2560" height="1354" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1246,8 +1220,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16560763" sideWeight="0.14601345" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.124394186" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16560763" sideWeight="0.14697406" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20516963" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1261,8 +1234,9 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.124394186" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1307,13 +1281,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7680" max-vertical-offset="40200">
           <caret line="512" column="17" selection-start-line="512" selection-start-column="17" selection-end-line="512" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#9035#9726#0" expanded="true" />
-            <element signature="e#9719#9720#0" expanded="true" />
-            <element signature="e#9900#10407#0" expanded="true" />
-            <element signature="e#10400#10401#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1321,10 +1289,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2415">
           <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#4554#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1348,7 +1313,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="730">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1360,22 +1324,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerUIBridgeInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="495">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/ShakeEventManager.java">
+    <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.4" vertical-offset="165" max-vertical-offset="2355">
-          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#4554#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="3105" max-vertical-offset="40140">
+          <caret line="223" column="40" selection-start-line="223" selection-start-column="40" selection-end-line="223" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerListeners.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5153" max-vertical-offset="7560">
+          <caret line="396" column="45" selection-start-line="396" selection-start-column="45" selection-end-line="396" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1387,20 +1356,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/StepCountEventManager.java">
+    <entry file="file://$PROJECT_DIR$/library/build/generated/source/aidl/release/me/pjq/musicplayer/IMusicPlayerListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1065">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerUIBridgeInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="13545" max-vertical-offset="13860">
+          <caret line="903" column="12" selection-start-line="903" selection-start-column="12" selection-end-line="903" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1413,45 +1372,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerService.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3105" max-vertical-offset="40140">
-          <caret line="223" column="40" selection-start-line="223" selection-start-column="40" selection-end-line="223" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#9035#9726#0" expanded="true" />
-            <element signature="e#9719#9720#0" expanded="true" />
-            <element signature="e#9900#10407#0" expanded="true" />
-            <element signature="e#10400#10401#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/library/build/generated/source/aidl/release/me/pjq/musicplayer/IMusicPlayerListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.72" vertical-offset="12647" max-vertical-offset="13680">
-          <caret line="903" column="12" selection-start-line="903" selection-start-column="12" selection-end-line="903" selection-end-column="12" />
-          <folding>
-            <element signature="e#8060#8061#0" expanded="true" />
-            <element signature="e#8080#8081#0" expanded="true" />
-            <element signature="e#8129#8130#0" expanded="true" />
-            <element signature="e#8147#8148#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerListeners.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5153" max-vertical-offset="7560">
-          <caret line="396" column="45" selection-start-line="396" selection-start-column="45" selection-end-line="396" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="495">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/MusicPlayerMainView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5034551" vertical-offset="8265" max-vertical-offset="17370">
-          <caret line="622" column="21" selection-start-line="622" selection-start-column="21" selection-end-line="622" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="8265" max-vertical-offset="17370">
+          <caret line="621" column="0" selection-start-line="621" selection-start-column="0" selection-end-line="621" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/StepCountEventManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+          <caret line="62" column="33" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/src/main/java/me/pjq/musicplayer/ShakeEventManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33267522" vertical-offset="1493" max-vertical-offset="3720">
+          <caret line="146" column="17" selection-start-line="146" selection-start-column="17" selection-end-line="146" selection-end-column="17" />
           <folding />
         </state>
       </provider>

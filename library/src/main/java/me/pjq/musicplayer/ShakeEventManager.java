@@ -59,10 +59,35 @@ public class ShakeEventManager implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+        shakeHandler(sensorEvent);
+        rotateHandler(sensorEvent);
+        flipBackHandler(sensorEvent);
+        onLeftHandShake(sensorEvent);
+    }
+
+    RotateSession session = new RotateSession();
+
+    private void rotateHandler(SensorEvent e) {
+        float x = e.values[0];
+        float y = e.values[1];
+        float z = e.values[2];
+
+        //EFLogger.i(TAG, "onSensorChanged,x=" + x + ",y=" + y + ",z=" + z);
+
+        session = session.value(z);
+
+        if (session.isSessionFinished()) {
+            listener.onShake();
+            session.reset();
+        }
+    }
+
+
+    private void shakeHandler(SensorEvent sensorEvent) {
         float maxAcc = calcMaxAcceleration(sensorEvent);
 
         if (maxAcc >= MOV_THRESHOLD) {
-        Log.d("SwA", "Max Acc [" + maxAcc + "]");
+            Log.d("SwA", "Max Acc [" + maxAcc + "]");
             if (counter == 0) {
                 counter++;
                 firstMovTime = System.currentTimeMillis();
@@ -83,7 +108,6 @@ public class ShakeEventManager implements SensorEventListener {
                         listener.onShake();
             }
         }
-
     }
 
     @Override
@@ -120,7 +144,7 @@ public class ShakeEventManager implements SensorEventListener {
         firstMovTime = System.currentTimeMillis();
     }
 
-    private void checkQuickStop(SensorEvent e) {
+    private void flipBackHandler(SensorEvent e) {
         float x = e.values[0];
         float y = e.values[1];
         float z = e.values[2];
@@ -141,8 +165,32 @@ public class ShakeEventManager implements SensorEventListener {
         }
 
         if (isStop) {
-//            log("back the phone,pausePlayer(),x=" + x + ",y=" + y + ",z=" + z);
-            listener.onFlipBack();
+            listener.onShake();
+        }
+    }
+
+    private void onLeftHandShake(SensorEvent e) {
+        float x = e.values[0];
+        float y = e.values[1];
+        float z = e.values[2];
+
+        // log("onSensorChanged,x=" + x + ",y=" + y + ",z=" + z);
+
+        boolean isStop = false;
+        int zMinValue = -8;
+
+        if (x < 1 && x > -1 && y < 1 && y > -1) {
+            if (z <= zMinValue) {
+                isStop = true;
+            }
+        } else {
+            if (z <= zMinValue) {
+                isStop = true;
+            }
+        }
+
+        if (isStop) {
+            listener.onShake();
         }
     }
 
@@ -152,4 +200,67 @@ public class ShakeEventManager implements SensorEventListener {
 
         public void onFlipBack();
     }
+
+    private class RotateSession {
+        private boolean value7_8 = false;
+        private boolean value4_5 = false;
+        private boolean value0_1 = false;
+        private boolean value_1_0 = false;
+        private boolean value_5_4 = false;
+        private boolean value_8_7 = false;
+
+        public RotateSession value(float val) {
+            if (4 <= val && val <= 8) {
+                value7_8 = true;
+            }
+
+            if (value7_8) {
+                if (2 <= val && val <= 4) {
+                    value4_5 = true;
+                }
+            }
+
+            if (0 <= val && val <= 2) {
+                value0_1 = true;
+            }
+
+            if (value7_8) {
+                if (-2 <= val && val <= 0) {
+                    value_1_0 = true;
+                }
+            }
+
+            if (-4 <= val && val <= -2) {
+                value_5_4 = true;
+            }
+
+            if (value_1_0) {
+                if (-8 <= val && val <= -4) {
+                    value_8_7 = true;
+                }
+            }
+
+            return this;
+        }
+
+        public boolean isSessionFinished() {
+            if (value7_8 && value4_5 && value0_1 && value_1_0 && value_5_4 && value_8_7) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public RotateSession reset() {
+            value7_8 = false;
+            value0_1 = false;
+            value_1_0 = false;
+            value_5_4 = false;
+            value_8_7 = false;
+
+            return this;
+        }
+
+    }
+
 }
