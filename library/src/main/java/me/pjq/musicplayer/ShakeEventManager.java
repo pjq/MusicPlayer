@@ -235,7 +235,7 @@ public class ShakeEventManager implements SensorEventListener {
             }
 
             if (value_1_0) {
-                if (-7 <= val && val <= -2) {
+                if (-10 <= val && val <= -7.5) {
                     value_8_7 = true;
                 }
             }
