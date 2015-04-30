@@ -586,7 +586,7 @@ public class MusicPlayerService extends Service implements
     public interface OnAudioFocusChangeListener {
         /**
          * Called on the listener to notify it the audio focus for this listener
-         * has been changed. The focusChange value indicates whether the focus
+         * has been changed. The focusChange addEvent indicates whether the focus
          * was gained, whether the focus was lost, and whether that loss is
          * transient, or whether the new focus holder will hold it for an
          * unknown amount of time. When losing focus, listeners can use the
