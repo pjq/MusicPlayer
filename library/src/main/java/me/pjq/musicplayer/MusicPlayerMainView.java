@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -108,6 +109,7 @@ public class MusicPlayerMainView extends LinearLayout implements OnClickListener
         if (isSimpleView) {
             if (null == animator) {
                 animator = ObjectAnimator.ofFloat(mPlayPauseLinLayout, "rotation", 0f, 360f);
+                animator.setInterpolator(new LinearInterpolator());
                 animator.setDuration(5000);
                 animator.setRepeatCount(ObjectAnimator.INFINITE);
             }
