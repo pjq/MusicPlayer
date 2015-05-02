@@ -7,7 +7,7 @@ public interface MusicPlayerConstants {
     // 1s
     public static final int PROGRESS_REFRESH_INTERVAL = 1000;
 
-    public static final int STEP_FREQUENCY_REFRESH_INTERVAL = 10000;
+    public static final int STEP_FREQUENCY_REFRESH_INTERVAL = 5000;
 
     public static final int PROGRESS_REFRESH_INTERVAL_SECOND = 1;
 
@@ -34,6 +34,8 @@ public interface MusicPlayerConstants {
     public static final String KEY_COUNT = "count";
 
     public static final String KEY_FREQ = "freq";
+
+    public static final String KEY_AVG_FREQ = "avg_freq";
 
     public static final String KEY_INDEX = "index";
 
@@ -111,10 +113,12 @@ public interface MusicPlayerConstants {
 
     public static final int COMMAND_AUTO_PLAYING_STATUS_INTERRUPTED = COMMAND_STOP_SERVICE_WITHOUT_SAVE + 1;
 
+    public static final int COMMAND_RESET_STEP_COUNT = COMMAND_AUTO_PLAYING_STATUS_INTERRUPTED + 1;
+
     /**
      * 更新播放器启动来源
      */
-    public static final int COMMAND_UPDATE_START_PLAYER_SOURCE = COMMAND_AUTO_PLAYING_STATUS_INTERRUPTED + 1;
+    public static final int COMMAND_UPDATE_START_PLAYER_SOURCE = COMMAND_RESET_STEP_COUNT + 1;
 
     public static final int MESSAGE_UPDATE_PLAYING_PROGRESS = COMMAND_UPDATE_START_PLAYER_SOURCE + 1;
 

@@ -95,6 +95,11 @@ public class MusicPlayerMainView extends LinearLayout implements OnClickListener
         mPlayerUIInterface = playerUIInterface;
     }
 
+    public void setMusicPlayerView() {
+        mMp3upLinLayout.setVisibility(View.GONE);
+        mMp3downLinLayout.setVisibility(View.GONE);
+    }
+
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
@@ -369,10 +374,11 @@ public class MusicPlayerMainView extends LinearLayout implements OnClickListener
         }
 
         @Override
-        public void onUpdateStepFrequency(float freq) throws RemoteException {
+        public void onUpdateStepFrequency(float freq, float avgFreq) throws RemoteException {
             Message msg = mLocalHandler.obtainMessage(MESSAGE_UPDATE_STEP_FREQUENCY);
             Bundle data = new Bundle();
             data.putFloat(KEY_FREQ, freq);
+            data.putFloat(KEY_AVG_FREQ, avgFreq);
             msg.setData(data);
 
             mLocalHandler.sendMessage(msg);
@@ -623,9 +629,10 @@ public class MusicPlayerMainView extends LinearLayout implements OnClickListener
                 case MESSAGE_UPDATE_STEP_FREQUENCY: {
                     Bundle data = msg.getData();
                     float freq = data.getFloat(KEY_FREQ);
+                    float avgFreq = data.getFloat(KEY_AVG_FREQ);
 
                     if (null != mPlayerUIInterface) {
-                        mPlayerUIInterface.onUpdateStepReq(freq);
+                        mPlayerUIInterface.onUpdateStepReq(freq, avgFreq);
                     }
 
                     break;

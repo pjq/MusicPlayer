@@ -22,6 +22,9 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 
 import me.pjq.musicplayer.utils.NotificationUtil;
@@ -91,6 +94,7 @@ public class MusicPlayerService extends Service implements
     private int stepInitCount = -1;
     private int stepCount = -1;
     private int stepPrevCount = -1;
+    private HashMap<Long, Float> freqMap = new HashMap<Long, Float>();
 
     /**
      * 保存播放器prepare状态
@@ -220,14 +224,21 @@ public class MusicPlayerService extends Service implements
             } else if (MusicPlayerConstants.MESSAGE_UPDATE_STEP_FREQUENCY == what) {
                 float freq = stepCount - stepPrevCount;
                 freq = freq / ((float) MusicPlayerConstants.STEP_FREQUENCY_REFRESH_INTERVAL / (float) 60000);
+                freqMap.put(System.currentTimeMillis(), freq);
+                Iterator<Map.Entry<Long, Float>> iterator = freqMap.entrySet().iterator();
+                float sum = 0;
+                while (iterator.hasNext()) {
+                    Map.Entry<Long, Float> entry = iterator.next();
+                    float f = entry.getValue();
+                    sum += f;
+                }
+                float avgFreq = sum / freqMap.size();
 
-                mPlayerListener.onUpdateStepFreq(freq);
+                mPlayerListener.onUpdateStepFreq(freq, avgFreq);
 
                 stepPrevCount = stepCount;
             }
         }
-
-        ;
 
         /**
          * 检查是否需要更新播放进度
@@ -974,6 +985,14 @@ public class MusicPlayerService extends Service implements
                     break;
                 }
 
+                case MusicPlayerConstants.COMMAND_RESET_STEP_COUNT: {
+                    log("COMMAND_RESET_STEP_COUNT");
+                    resetStepCount();
+                    mUpdatePlayingProgressHandler
+                            .sendEmptyMessage(MusicPlayerConstants.MESSAGE_UPDATE_STEP_FREQUENCY);
+                    break;
+                }
+
                 case MusicPlayerConstants.COMMAND_UPDATE_START_PLAYER_SOURCE: {
 
                     Bundle bundle = intent.getExtras();
@@ -1014,6 +1033,13 @@ public class MusicPlayerService extends Service implements
         }
 
         return extra.getInt(MusicPlayerConstants.KEY_PLAYER_COMMAND);
+    }
+
+    private void resetStepCount() {
+        freqMap.clear();
+        stepCount = -1;
+        stepInitCount = -1;
+        stepPrevCount = -1;
     }
 
     @Override
@@ -1062,6 +1088,8 @@ public class MusicPlayerService extends Service implements
         shakeEventManager.deregister();
         stepCountEventManager.deregister();
         removeAudioFocus();
+
+        resetStepCount();
 
         TelephonyManager tm = (TelephonyManager) getSystemService(Service.TELEPHONY_SERVICE);
         tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_NONE);

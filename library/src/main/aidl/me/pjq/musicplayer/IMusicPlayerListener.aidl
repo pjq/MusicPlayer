@@ -64,7 +64,8 @@ interface  IMusicPlayerListener{
      void onUpdatePlayingProgress(inout MusicPlayerItem item, int itemIndex, int position);
 
      void onUpdateStepCount(int stepCount);
-     void onUpdateStepFrequency(float freq);
+
+     void onUpdateStepFrequency(float freq, float avgFreq);
 
     /**
      * 通知播放界面，给一些提示

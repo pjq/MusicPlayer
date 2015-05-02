@@ -387,6 +387,7 @@ public class PlayerUtils {
     }
 
     private static final boolean controlled = true;
+
     public static void requireNotificationController(Context context) {
         if (controlled) {
             return;
@@ -511,6 +512,16 @@ public class PlayerUtils {
         Bundle bundle = new Bundle();
         bundle.putInt(MusicPlayerConstants.KEY_PLAYER_COMMAND, MusicPlayerConstants.COMMAND_JUMP_TO_INDEX);
         bundle.putInt(MusicPlayerConstants.KEY_INDEX, index);
+        intent.putExtras(bundle);
+
+        context.startService(intent);
+    }
+
+    public static void resetStepCount(Context context) {
+        Intent intent = new Intent();
+        intent.setAction(MusicPlayerConstants.BIND_ACTION);
+        Bundle bundle = new Bundle();
+        bundle.putInt(MusicPlayerConstants.KEY_PLAYER_COMMAND, MusicPlayerConstants.COMMAND_RESET_STEP_COUNT);
         intent.putExtras(bundle);
 
         context.startService(intent);

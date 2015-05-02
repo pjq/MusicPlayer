@@ -388,13 +388,13 @@ public class MusicPlayerListeners {
         }
     }
 
-    public void onUpdateStepFreq(float freq) {
+    public void onUpdateStepFreq(float freq, float avgFreq) {
         int size = mIPlayerListeners.size();
 
         for (int i = 0; i < size; i++) {
             IMusicPlayerListener listener = mIPlayerListeners.get(i);
             try {
-                listener.onUpdateStepFrequency(freq);
+                listener.onUpdateStepFrequency(freq, avgFreq);
             } catch (RemoteException e) {
                 e.printStackTrace();
                 size = remoteExceptionHandle(listener);

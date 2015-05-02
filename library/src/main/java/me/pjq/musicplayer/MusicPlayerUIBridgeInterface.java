@@ -3,7 +3,7 @@ package me.pjq.musicplayer;
 
 /**
  * 播放器和UI交互接口
- * 
+ *
  * @author pengjianqing
  */
 public interface MusicPlayerUIBridgeInterface {
@@ -14,5 +14,5 @@ public interface MusicPlayerUIBridgeInterface {
 
     void onUpdateStepCount(int stepCount);
 
-    void onUpdateStepReq(float freq);
+    void onUpdateStepReq(float freq, float avgFreq);
 }

@@ -66,8 +66,8 @@ public class ShakeEventManager implements SensorEventListener {
         float y = sensorEvent.values[1];
         float z = sensorEvent.values[2];
 //        Log.i(TAG, "onSensorChanged,x=" + x + ",y=" + y + ",z=" + z);
-//        shakeHandler(sensorEvent);
-        rotateHandler(sensorEvent);
+        shakeHandler(sensorEvent);
+//        rotateHandler(sensorEvent);
 //        flipBackHandler(sensorEvent);
 //        onLeftHandShake(sensorEvent);
         writeFile(sensorEvent);
