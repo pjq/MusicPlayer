@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="player_pause_width">150dip</dimen>
+    <dimen name="player_pause_ic_width">50dip</dimen>
+</resources>

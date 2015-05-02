@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" ?>   
+<?xml version="1.0" encoding="utf-8" ?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:state_window_focused="false" android:drawable="@drawable/musicplayer_mp3play_bg_no"/>
-	<item android:state_focused="true" android:drawable="@drawable/musicplayer_mp3play_bg"/>
-	<item android:state_pressed="true" android:drawable="@drawable/musicplayer_mp3play_bg"/>
-	<item android:drawable="@drawable/musicplayer_mp3play_bg_no"/>
+    <item android:drawable="@drawable/musicplayer_mp3play_bg_no" android:state_window_focused="false" />
+    <item android:drawable="@drawable/musicplayer_mp3play_bg" android:state_focused="true" />
+    <item android:drawable="@drawable/musicplayer_mp3play_bg" android:state_pressed="true" />
+    <item android:drawable="@drawable/musicplayer_mp3play_bg_no" />
 </selector>

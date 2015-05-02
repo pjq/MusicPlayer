@@ -1,5 +1,6 @@
 package me.pjq.musicplayer;
 
+import android.animation.ObjectAnimator;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -66,6 +67,8 @@ public class MusicPlayerMainView extends LinearLayout implements OnClickListener
 
     private MusicPlayerUIBridgeInterface mPlayerUIInterface;
 
+    boolean isSimpleView = true;
+
     /**
      * 是否处于进度条托动状态
      */
@@ -95,9 +98,27 @@ public class MusicPlayerMainView extends LinearLayout implements OnClickListener
         mPlayerUIInterface = playerUIInterface;
     }
 
-    public void setMusicPlayerView() {
-        mMp3upLinLayout.setVisibility(View.GONE);
-        mMp3downLinLayout.setVisibility(View.GONE);
+    public void setMusicPlayerView(int resId) {
+        mPlayPauseLinLayout.setBackgroundResource(resId);
+    }
+
+    ObjectAnimator animator;
+
+    private void initAnimation(boolean isPlaying) {
+        if (isSimpleView) {
+            if (null == animator) {
+                animator = ObjectAnimator.ofFloat(mPlayPauseLinLayout, "rotation", 0f, 360f);
+                animator.setDuration(5000);
+                animator.setRepeatCount(ObjectAnimator.INFINITE);
+            }
+
+            if (isPlaying) {
+                animator.start();
+            } else {
+                animator.pause();
+            }
+        }
+
     }
 
     @Override
@@ -168,10 +189,13 @@ public class MusicPlayerMainView extends LinearLayout implements OnClickListener
 
     private View onCreateView(LayoutInflater inflater) {
         log("onCreateView,mView=" + mView);
-        mView = inflater.inflate(R.layout.musicplayer_controller_view, null);
-        mView.setBackgroundResource(R.drawable.musicplayer_player_bg);
+        if (isSimpleView) {
+            mView = inflater.inflate(R.layout.musicplayer_controller_view_simple, null);
+        } else {
+            mView = inflater.inflate(R.layout.musicplayer_controller_view, null);
+            mView.setBackgroundResource(R.drawable.musicplayer_player_bg);
+        }
         ensureUi(mView);
-
 
         return mView;
     }
@@ -1159,14 +1183,18 @@ public class MusicPlayerMainView extends LinearLayout implements OnClickListener
         switch (status) {
             case STATUS_STARTED:
                 mPlayorpauseIv.setImageResource(R.drawable.musicplayer_pause);
+                initAnimation(true);
+
                 break;
             case STATUS_PAUSED:
                 mPlayorpauseIv.setImageResource(R.drawable.musicplayer_play);
+                initAnimation(false);
                 break;
             case STATUS_STOPPED:
                 mSeekBar.setProgress(0);
                 mPlayingTimeTv.setText("00:00");
                 mPlayorpauseIv.setImageResource(R.drawable.musicplayer_play);
+                initAnimation(false);
                 break;
 
             default:
