@@ -225,14 +225,14 @@ public class MusicPlayerService extends Service implements
                 float freq = stepCount - stepPrevCount;
                 freq = freq / ((float) MusicPlayerConstants.STEP_FREQUENCY_REFRESH_INTERVAL / (float) 60000);
                 freqMap.put(System.currentTimeMillis(), freq);
-                Iterator<Map.Entry<Long, Float>> iterator = freqMap.entrySet().iterator();
-                float sum = 0;
-                while (iterator.hasNext()) {
-                    Map.Entry<Long, Float> entry = iterator.next();
-                    float f = entry.getValue();
-                    sum += f;
-                }
-                float avgFreq = sum / freqMap.size();
+//                Iterator<Map.Entry<Long, Float>> iterator = freqMap.entrySet().iterator();
+//                float sum = 0;
+//                while (iterator.hasNext()) {
+//                    Map.Entry<Long, Float> entry = iterator.next();
+//                    float f = entry.getValue();
+//                    sum += f;
+//                }
+                float avgFreq =  (stepCount - stepInitCount)/((freqMap.size() * (float) MusicPlayerConstants.STEP_FREQUENCY_REFRESH_INTERVAL) / (float) 60000);
 
                 mPlayerListener.onUpdateStepFreq(freq, avgFreq);
 

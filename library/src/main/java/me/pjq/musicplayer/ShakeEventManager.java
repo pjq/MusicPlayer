@@ -251,7 +251,7 @@ public class ShakeEventManager implements SensorEventListener {
 
 
     private static class ShakeSession extends BaseSession {
-        private static final int MOV_THRESHOLD = 17;
+        private static final int MOV_THRESHOLD = 18;
         private static final float ALPHA = 0.8F;
         float maxAcc;
         // Gravity force on x,y,z axis
